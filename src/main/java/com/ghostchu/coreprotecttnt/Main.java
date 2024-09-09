@@ -61,6 +61,7 @@ public class Main extends JavaPlugin implements Listener {
             return;
         }
         Block clickedBlock = e.getClickedBlock();
+        if(clickedBlock == null) return;
         Location locationHead = clickedBlock.getLocation();
         if (clickedBlock.getBlockData() instanceof Bed bed) {
             Location locationFoot = locationHead.clone().subtract(bed.getFacing().getDirection());
@@ -387,7 +388,7 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void onBombHit(ProjectileHitEvent e) {
-        if (e.getHitEntity() instanceof ExplosiveMinecart || e.getEntityType() == EntityType.ENDER_CRYSTAL) {
+        if (e.getHitEntity() instanceof ExplosiveMinecart || e.getEntityType() == EntityType.END_CRYSTAL) {
             if (e.getEntity().getShooter() != null && e.getEntity().getShooter() instanceof Player) {
                 if (e.getHitEntity() != null) {
                     String sourceFromCache = probablyCache.getIfPresent(e.getEntity());
